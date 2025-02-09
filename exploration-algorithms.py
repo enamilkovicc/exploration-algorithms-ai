@@ -136,7 +136,6 @@ def visualize_path(grid, path, title):
 
 # Performance Analysis
 def analyze_performance(grid, algorithm, heuristic=None):
-    # Analyze runtime, memory usage, and node expansions
     start_time = time.time()
     if heuristic:
         path, nodes_expanded = algorithm(grid, heuristic)
