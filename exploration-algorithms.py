@@ -119,20 +119,24 @@ def visualize_path(grid, path, title):
     for x, y in path:
         if grid_data[x][y] not in ['S', 'G']:
             grid_data[x][y] = '*'
-
+    
     fig, ax = plt.subplots()
-    ax.imshow(grid_data == 'X', cmap='gray', interpolation='none')
+    ax.imshow(grid_data == 'X', cmap='binary', interpolation='none')
+
     for i in range(len(grid_data)):
         for j in range(len(grid_data[0])):
             if grid_data[i][j] == 'S':
-                ax.text(j, i, 'S', ha='center', va='center', color='green')
+                ax.text(j, i, 'S', ha='center', va='center', color='blue', fontweight='bold')  
             elif grid_data[i][j] == 'G':
-                ax.text(j, i, 'G', ha='center', va='center', color='red')
+                ax.text(j, i, 'G', ha='center', va='center', color='green', fontweight='bold')  
             elif grid_data[i][j] == '*':
-                ax.text(j, i, '*', ha='center', va='center', color='blue')
+                ax.text(j, i, '*', ha='center', va='center', color='red', fontweight='bold')  
+            elif grid_data[i][j] == '.':
+                ax.text(j, i, '.', ha='center', va='center', color='darkgray')  
 
     fig.suptitle(title, fontsize=14)
     return fig
+
 
 # Performance Analysis
 def analyze_performance(grid, algorithm, heuristic=None):
@@ -184,12 +188,12 @@ def main():
 
     root.configure(bg="white")
 
-    frame = tk.Frame(root, bg="white") 
+    frame = tk.Frame(root, bg="white")
     frame.pack(side=tk.BOTTOM, fill=tk.BOTH, expand=True)
 
-    btn_dfs = tk.Button(root, text="Run DFS", command=lambda: run_algorithm("DFS"), font=("Arial", 14), width=12, height=1, bg="light gray")
-    btn_bfs = tk.Button(root, text="Run BFS", command=lambda: run_algorithm("BFS"), font=("Arial", 14), width=12, height=1, bg="light gray")
-    btn_astar = tk.Button(root, text="Run A*", command=lambda: run_algorithm("A*"), font=("Arial", 14), width=12, height=1, bg="light gray")
+    btn_dfs = tk.Button(root, text="Run DFS", command=lambda: run_algorithm("DFS"), font=("Arial", 14), width=8, height=1, bg="light gray")
+    btn_bfs = tk.Button(root, text="Run BFS", command=lambda: run_algorithm("BFS"), font=("Arial", 14), width=8, height=1, bg="light gray")
+    btn_astar = tk.Button(root, text="Run A*", command=lambda: run_algorithm("A*"), font=("Arial", 14), width=8, height=1, bg="light gray")
 
     btn_dfs.pack(side=tk.LEFT, padx=75, pady=10)
     btn_bfs.pack(side=tk.LEFT, padx=75, pady=10)
